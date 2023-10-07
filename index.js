@@ -5,6 +5,7 @@ const cors = require('cors');
 const mongoose = require('mongoose'); // Import Mongoose
 const config = require('./config.json'); // Import config from config.json
 const codesRoutes = require('./Modules/Codes/routes'); // Import Codes routes
+const usersRoutes = require('./Modules/Users/routes'); // Import Codes routes
 
 const app = express();
 
@@ -19,8 +20,9 @@ app.get('/', (req, res) => {
   res.json({ message: 'API is up and running!' });
 });
 
-// Use Codes routes
+// Use Module Routes
 app.use('/codes', codesRoutes);
+app.use('/users', usersRoutes);
 
 // Connect to MongoDB using values from config.json
 mongoose
