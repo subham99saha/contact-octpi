@@ -19,6 +19,11 @@ const saveCode = async (data) => {
 
 const saveCodeViaGet = async (code) => {
   try {
+    const existingCode = await Code.findOne({code});
+    if (existingCode) {
+      return { success: false, message: 'Code already exists' };
+    }
+    
     const newCode = new Code({code});
     let response = await newCode.save();
     if (response) {

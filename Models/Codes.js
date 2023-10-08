@@ -7,6 +7,7 @@ const codeSchema = new mongoose.Schema({
   code: {
     type: String,
     required: true,
+    unique: true
   },
   createdOn: {
     type: Date,

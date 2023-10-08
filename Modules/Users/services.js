@@ -2,9 +2,14 @@
 
 const User = require('../../Models/Users');
 
-// Function to create a new code record
+// Function to create a new user record
 const saveUser = async (email) => {
   try {
+    const existingUser = await User.findOne({email});
+    if (existingUser) {
+      return { success: false, message: 'Email already exists' };
+    }
+
     const newUser = new User({email});
     let response = await newUser.save();
     if (response) {
@@ -19,8 +24,8 @@ const saveUser = async (email) => {
 
 const getAllUsers = async () => {
   try {
-    const codes = await User.find();
-    return { success: true, message: codes };
+    const users = await User.find();
+    return { success: true, message: users };
   } catch (error) {
     return { success: false, message: error };
   }
