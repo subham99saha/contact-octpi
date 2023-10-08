@@ -21,12 +21,6 @@ router.get('/', async (req, res) => {
   res.status(200).json(response);
 });
 
-router.post('/search', async (req, res) => {
-  const { code } = req.body;
-  const response = await codesService.searchCodesByCode(code);
-  res.status(200).json(response);
-});
-
 router.delete('/:id', async (req, res) => {
   const { id } = req.params;
   const response = await codesService.deleteCode(id);
@@ -43,6 +37,12 @@ router.get('/save/:code', async (req, res) => {
 router.get('/check/:code', async (req, res) => {
   const { code } = req.params;
   const response = await codesService.checkCodeAndRemove(code);
+  res.status(200).json(response);
+});
+
+router.get('/search/:code', async (req, res) => {
+  const { code } = req.params;
+  const response = await codesService.searchCodesByCode(code);
   res.status(200).json(response);
 });
 
