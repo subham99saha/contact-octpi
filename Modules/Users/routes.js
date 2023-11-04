@@ -10,9 +10,9 @@ router.get('/', async (req, res) => {
 });
 
 // APIs
-router.get('/save/:email', async (req, res) => {
-  const { email } = req.params;
-  const response = await usersService.saveUser(email);
+router.get('/save/:email/:name', async (req, res) => {
+  const { email, name } = req.params;
+  const response = await usersService.saveUser(email,name);
   res.status(200).json(response);
 });
 
